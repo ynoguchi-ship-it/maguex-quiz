@@ -1,1 +1,1 @@
-# maguex-quiz
+# magx-quiz
