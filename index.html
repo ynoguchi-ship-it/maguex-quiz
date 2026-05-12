@@ -407,7 +407,19 @@
            return;
         }
 
-        setCurrentQuizList(shuffledQuestions);
+        // 選択肢をランダムにシャッフルし、正解のインデックスを再計算する
+        const randomizedQuestions = shuffledQuestions.map(q => {
+          const correctText = q.options[q.answer];
+          const newOptions = shuffleArray([...q.options]);
+          const newAnswerIndex = newOptions.indexOf(correctText);
+          return {
+            ...q,
+            options: newOptions,
+            answer: newAnswerIndex
+          };
+        });
+
+        setCurrentQuizList(randomizedQuestions);
         setCurrentQuestionIndex(0);
         setScore(0);
         setSelectedOption(null);
